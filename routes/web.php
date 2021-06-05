@@ -14,8 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/', [StudentController::class,'index'])->name('student.index');
+Route::get('/createStudent', [StudentController::class,'create'])->name('student.createStudent');
+Route::post('/save', [StudentController::class,'save'])->name('student.save');

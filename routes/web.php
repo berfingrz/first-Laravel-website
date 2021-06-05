@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Student;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/', [Student::class,'index'])->name('student.index');
+Route::get('/', [StudentController::class,'index'])->name('student.index');

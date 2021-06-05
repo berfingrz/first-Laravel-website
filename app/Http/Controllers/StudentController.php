@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
 use Illuminate\Http\Request;
 
-class Student extends Controller
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -32,9 +33,27 @@ class Student extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function save(Request $request)
     {
-        //
+        // Validate the form data
+        $request->validate([
+            'name' => 'required',
+            'surname' => 'required',
+            'department' => 'required'
+        ]);
+
+        // Insert the data to the database
+        $student = new Student();
+        $student->name = $request->name;
+        $student->surname = $request->surname;
+        $student->department = $request->department;
+        $save = $student->save();
+
+        if ($save) {
+            return back()->with('success', 'Student added successfully');
+        } else {
+            return back()->with('fail', 'Something wrong, try again.');
+        }
     }
 
     /**
